@@ -46,7 +46,7 @@ class Source(Base):
         if re.match(r'^\d{4}[/-]\d\d[/-]\d\d \w*$', context['input']):
             return [{'word': x, 'kind': 'directive'} for x in DIRECTIVES]
         # line that starts with whitespace (-> accounts)
-        if re.match(r'^(\s)+[\w:]+$', context['input']):
+        if re.match(r'^(\s)+([!*]\s+)?[\w:-]+$', context['input']):
             return [{'word': x, 'kind': 'account'} for x in attrs['accounts']]
         # directive followed by account
         if re.search(
